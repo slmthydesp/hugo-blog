@@ -11,6 +11,8 @@
   {{ partial "footer.html" . }}
   {{ $theme := resources.Get "js/theme.js" | minify | fingerprint }}
   <script src="{{ $theme.RelPermalink }}" defer></script>
+  {{ $search := resources.Get "js/search.js" | minify | fingerprint }}
+  <script src="{{ $search.RelPermalink }}" type="module"></script>
   {{ block "scripts" . }}{{ end }}
 </body>
 </html>
