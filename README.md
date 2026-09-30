@@ -42,6 +42,24 @@ npx --yes serve public -p 4173
 
 说明：`hugo server` 不会生成 Pagefind 索引；若尚未运行 `./scripts/build.sh`，顶栏搜索框会禁用并提示先生成索引。
 
+## 评论（Giscus）
+
+文章页底部使用 [Giscus](https://giscus.app/)（GitHub Discussions）。在 `hugo.toml` 的 `[params]` 中填写以下四项；**四项均非空**时才会加载 `giscus.app` 脚本，否则仅显示中文占位文案，不产生第三方网络请求。
+
+1. 在目标 GitHub 仓库开启 **Discussions**，并安装 [giscus 应用](https://github.com/apps/giscus)。
+2. 打开 [giscus.app](https://giscus.app/zh-CN)，选择仓库与 Discussions 分类，页面会给出对应 ID。
+3. 将值写入 `hugo.toml`：
+
+```toml
+[params]
+  giscusRepo = "owner/repo"           # 例如 your-name/blockchain_tech
+  giscusRepoId = "<repo-id>"          # 由 giscus.app 生成，勿编造
+  giscusCategory = "General"          # Discussions 分类名称（与 giscus 向导一致）
+  giscusCategoryId = "<category-id>"  # 由 giscus.app 生成，勿编造
+```
+
+本地改完后重新 `hugo server` 或 `./scripts/build.sh` 即可在文章页看到评论框。主题随系统深浅色（`preferred_color_scheme`），界面语言为 `zh-CN`。
+
 ## 仓库结构（概要）
 
 - `hugo.toml` — 站点配置
