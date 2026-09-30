@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="�
-�">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img">
+  <title>链上笔记</title>
   <rect width="32" height="32" rx="7" fill="#0b1210"/>
   <path d="M9 16.5c0-2.2 1.7-4 3.9-4h1.4v2.2h-1.2c-1 0-1.9.8-1.9 1.8s.8 1.8 1.9 1.8h2.2c2.2 0 3.9 1.8 3.9 4s-1.7 4-3.9 4h-1.4v-2.2h1.2c1 0 1.9-.8 1.9-1.8s-.8-1.8-1.9-1.8h-2.2C10.7 20.5 9 18.7 9 16.5z" fill="#2dd4bf"/>
   <circle cx="22.5" cy="11" r="2.2" fill="#fbbf24"/>
