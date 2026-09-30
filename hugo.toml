@@ -26,7 +26,7 @@ summaryLength = 80
   [markup.highlight]
     style = "monokai"
     lineNos = false
-    noClasses = false
+    noClasses = true
   [markup.tableOfContents]
     startLevel = 2
     endLevel = 3
