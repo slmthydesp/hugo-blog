@@ -1,0 +1,39 @@
+baseURL = "http://localhost:1313/"
+languageCode = "zh-cn"
+title = "链上笔记"
+defaultContentLanguage = "zh-cn"
+enableRobotsTXT = true
+summaryLength = 80
+
+[pagination]
+  pagerSize = 20
+
+[permalinks]
+  posts = "/posts/:slug/"
+
+[taxonomies]
+  tag = "tags"
+  series = "series"
+
+[params]
+  description = "协议与 Solidity 长期学习笔记"
+  giscusRepo = ""
+  giscusRepoId = ""
+  giscusCategory = "Announcements"
+  giscusCategoryId = ""
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+    noClasses = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term = ["HTML", "RSS"]
