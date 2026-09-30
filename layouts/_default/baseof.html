@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><title>{{ .Title }}</title></head>
-<body>{{ block "main" . }}{{ end }}</body>
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  {{ partial "header.html" . }}
+  <main class="container">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  {{ $theme := resources.Get "js/theme.js" | minify | fingerprint }}
+  <script src="{{ $theme.RelPermalink }}" defer></script>
+  {{ block "scripts" . }}{{ end }}
+</body>
 </html>

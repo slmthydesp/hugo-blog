@@ -1,0 +1,10 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">© {{ now.Year }} {{ .Site.Title }} · 内容仅供学习</p>
+    {{ with .Site.Home.OutputFormats.Get "RSS" }}
+    <p class="footer-links">
+      <a href="{{ .RelPermalink }}">RSS</a>
+    </p>
+    {{ end }}
+  </div>
+</footer>
