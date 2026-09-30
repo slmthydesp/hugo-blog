@@ -6,13 +6,11 @@
 #   make build      # 生产构建 + 搜索索引
 #   make verify     # 构建并检查关键页面是否存在
 #   make preview    # 构建后用静态服务器预览（可测搜索）
-#   make new NAME=my-note   # 新建文章草稿
+#   make new NAME=openzeppelin/foo   # 新建文章（可带子目录）
 #   make clean      # 清理构建产物
 #
 # 说明：本机 Hugo 若装在 ~/.local/bin，下面会自动加入 PATH。
-#
-# 调用方：本仓库根目录手动执行 `make <目标>`（无代码 import）。
-# 同类文件：仓库内原先无 Makefile。
+# 文章按主题放在 content/posts/<主题>/ 下，URL 仍用 front matter 的 slug。
 
 export PATH := $(HOME)/.local/bin:$(PATH)
 
@@ -27,7 +25,7 @@ help:
 	@echo "  make build            生产构建（Hugo + Pagefind 搜索索引）"
 	@echo "  make verify           构建并断言首页/文章/系列/标签/RSS/搜索"
 	@echo "  make preview          构建后静态预览 → http://localhost:4173/（可测搜索）"
-	@echo "  make new NAME=slug    新建文章 content/posts/<slug>.md（默认 draft）"
+	@echo "  make new NAME=主题/slug  新建文章，如 openzeppelin/access-control（默认 draft）"
 	@echo "  make clean            删除 public/、resources/ 等构建缓存"
 	@echo "  make version          打印 Hugo 版本"
 
@@ -47,13 +45,13 @@ verify:
 preview: build
 	npx --yes serve public -p 4173
 
-## 新建文章。示例：make new NAME=my-amm-notes
+## 新建文章。示例：make new NAME=openzeppelin/access-control
 new:
 ifndef NAME
-	$(error 请指定文章名，例如：make new NAME=my-amm-notes)
+	$(error 请指定路径，例如：make new NAME=openzeppelin/access-control)
 endif
 	hugo new posts/$(NAME).md
-	@echo "已创建 content/posts/$(NAME).md — 编辑 front matter 后 make serve 预览"
+	@echo "已创建 content/posts/$(NAME).md — 请设置 slug，然后 make serve 预览"
 
 ## 清理构建产物与 Hugo 缓存
 clean:

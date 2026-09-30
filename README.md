@@ -21,11 +21,24 @@ hugo server
 
 ## 写文章
 
-```bash
-hugo new posts/my-note.md
+按主题分子目录（磁盘分类）；对外 URL 仍靠 front matter 的 `slug`，保持 `/posts/<slug>/`。
+
+```text
+content/posts/
+  openzeppelin/     # OpenZeppelin 相关
+  uniswap-v2/       # Uniswap V2 相关
+  tools/            # 开发工具笔记
+  _index.md
 ```
 
-编辑 `content/posts/my-note.md` 的 front matter：`title`、`date`、`summary`、可选 `series` / `seriesOrder`、`tags`、`toc`。系列说明页在 `content/series/<id>/_index.md`。完成后用 `hugo server` 预览。
+```bash
+# 推荐：写到对应主题目录
+make new NAME=openzeppelin/access-control
+# 或
+hugo new posts/openzeppelin/access-control.md
+```
+
+编辑 front matter：`title`、`slug`（建议英文）、`date`、`summary`、可选 `series` / `seriesOrder`、`tags`、`toc`。系列阅读顺序仍用 taxonomy（`content/series/<id>/_index.md`），和磁盘目录可以同名也可以不同。完成后 `make serve` 预览。
 
 ## 构建与验证
 
