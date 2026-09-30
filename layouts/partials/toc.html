@@ -1,9 +1,14 @@
 {{ if ne .Params.toc false }}
   {{ with .TableOfContents }}
     {{ if findRE "<li" . }}
-<details class="post-toc">
-  <summary>目录</summary>
-  {{ . }}
+<details class="post-toc" open>
+  <summary class="post-toc__summary">
+    <span class="post-toc__label">目录</span>
+    <span class="post-toc__hint" aria-hidden="true"></span>
+  </summary>
+  <div class="post-toc__body">
+    {{ . }}
+  </div>
 </details>
     {{ end }}
   {{ end }}
