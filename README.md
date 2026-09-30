@@ -17,7 +17,15 @@ hugo version
 hugo server
 ```
 
-浏览器打开 `http://localhost:1313/`。
+浏览器打开 `http://localhost:1313/`。页脚有全站 RSS：`/index.xml`。
+
+## 写文章
+
+```bash
+hugo new posts/my-note.md
+```
+
+编辑 `content/posts/my-note.md` 的 front matter：`title`、`date`、`summary`、可选 `series` / `seriesOrder`、`tags`、`toc`。系列说明页在 `content/series/<id>/_index.md`。完成后用 `hugo server` 预览。
 
 ## 构建与验证
 
@@ -27,7 +35,7 @@ hugo server
 ./scripts/build.sh
 ```
 
-验证脚本（同样会跑 Hugo 与 Pagefind，并断言产物；不调用 `build.sh`）：
+验证脚本（Hugo + Pagefind，断言首页、种子文章、系列/标签、`public/index.xml`、Pagefind 索引；不调用 `build.sh`）：
 
 ```bash
 ./scripts/verify-build.sh

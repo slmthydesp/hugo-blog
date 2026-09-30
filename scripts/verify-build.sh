@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 hugo --gc --minify
 test -f public/index.html
+test -f public/index.xml
 echo "verify-build: base OK"
 test -f public/posts/uniswap-v2-overview/index.html
 test -f public/posts/uniswap-v2-pair/index.html
