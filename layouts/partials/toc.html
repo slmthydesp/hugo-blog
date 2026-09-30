@@ -1,0 +1,10 @@
+{{ if ne .Params.toc false }}
+  {{ with .TableOfContents }}
+    {{ if findRE "<li" . }}
+<details class="post-toc">
+  <summary>目录</summary>
+  {{ . }}
+</details>
+    {{ end }}
+  {{ end }}
+{{ end }}

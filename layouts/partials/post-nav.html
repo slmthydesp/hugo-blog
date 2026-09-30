@@ -1,0 +1,40 @@
+{{ $prev := false }}
+{{ $next := false }}
+
+{{ $seriesTerms := .GetTerms "series" }}
+{{ if $seriesTerms }}
+  {{ $term := index $seriesTerms 0 }}
+  {{ $ordered := $term.Pages.ByParam "seriesOrder" }}
+  {{ $current := . }}
+  {{ range $ordered }}
+    {{ if lt (int .Params.seriesOrder) (int $current.Params.seriesOrder) }}
+      {{ $prev = . }}
+    {{ else if and (gt (int .Params.seriesOrder) (int $current.Params.seriesOrder)) (not $next) }}
+      {{ $next = . }}
+    {{ end }}
+  {{ end }}
+{{ else }}
+  {{ with .PrevInSection }}{{ $prev = . }}{{ end }}
+  {{ with .NextInSection }}{{ $next = . }}{{ end }}
+{{ end }}
+
+{{ if or $prev $next }}
+<nav class="post-nav" aria-label="章节导航">
+  {{ with $prev }}
+  <a class="post-nav-link post-nav-prev" href="{{ .RelPermalink }}">
+    <span class="post-nav-label">上一章</span>
+    <span class="post-nav-title">{{ .Title }}</span>
+  </a>
+  {{ else }}
+  <span class="post-nav-link post-nav-prev is-empty" aria-hidden="true"></span>
+  {{ end }}
+  {{ with $next }}
+  <a class="post-nav-link post-nav-next" href="{{ .RelPermalink }}">
+    <span class="post-nav-label">下一章</span>
+    <span class="post-nav-title">{{ .Title }}</span>
+  </a>
+  {{ else }}
+  <span class="post-nav-link post-nav-next is-empty" aria-hidden="true"></span>
+  {{ end }}
+</nav>
+{{ end }}
