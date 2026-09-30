@@ -1,0 +1,20 @@
+<article class="post-card">
+  <h3 class="card-title">
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </h3>
+  <p class="card-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    <span aria-hidden="true">·</span>
+    <span>约 {{ .ReadingTime }} 分钟</span>
+  </p>
+  {{ with .Params.summary }}
+  <p class="card-summary">{{ . }}</p>
+  {{ end }}
+  {{ with .Params.tags }}
+  <ul class="card-tags">
+    {{ range . }}
+    <li><a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">{{ . }}</a></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</article>

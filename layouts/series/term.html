@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="page-section term-page" aria-labelledby="series-term-heading">
+  <header class="section-header">
+    <p class="section-kicker">系列</p>
+    <h1 id="series-term-heading" class="section-title">{{ .Title }}</h1>
+    {{ with .Params.summary }}
+    <p class="section-lead">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ with .Content }}
+  <div class="term-content prose">
+    {{ . }}
+  </div>
+  {{ end }}
+
+  <h2 class="subsection-title">章节</h2>
+  {{ $ordered := .Data.Pages.ByParam "seriesOrder" }}
+  {{ with $ordered }}
+  <div class="card-list">
+    {{ range . }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-hint">本系列暂无文章。</p>
+  {{ end }}
+</section>
+{{ end }}

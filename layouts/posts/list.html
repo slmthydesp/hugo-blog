@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section class="page-section" aria-labelledby="posts-heading">
+  <header class="section-header">
+    <h1 id="posts-heading" class="section-title">{{ .Title }}</h1>
+    {{ with .Params.summary }}
+    <p class="section-lead">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ $paginator := .Paginate .Pages }}
+  {{ with $paginator.Pages }}
+  <div class="card-list">
+    {{ range . }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-hint">暂无文章。</p>
+  {{ end }}
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="文章分页">
+    {{ if $paginator.HasPrev }}
+    <a class="pagination-link" href="{{ $paginator.Prev.URL }}">上一页</a>
+    {{ end }}
+    <span class="pagination-status">第 {{ $paginator.PageNumber }} / {{ $paginator.TotalPages }} 页</span>
+    {{ if $paginator.HasNext }}
+    <a class="pagination-link" href="{{ $paginator.Next.URL }}">下一页</a>
+    {{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}

@@ -1,1 +1,34 @@
-{{ define "main" }}{{ .Title }}{{ end }}
+{{ define "main" }}
+<section class="page-section home-series" aria-labelledby="home-series-heading">
+  <header class="section-header">
+    <h1 id="home-series-heading" class="section-title">系列</h1>
+    <p class="section-lead">按主题串联的学习笔记</p>
+  </header>
+  {{ with .Site.Taxonomies.series }}
+  <div class="card-list">
+    {{ range .Alphabetical }}
+      {{ partial "series-card.html" .Page }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-hint">暂无系列。</p>
+  {{ end }}
+</section>
+
+<section class="page-section home-posts" aria-labelledby="home-posts-heading">
+  <header class="section-header">
+    <h2 id="home-posts-heading" class="section-title">最新文章</h2>
+    <p class="section-lead"><a href="{{ "/posts/" | relURL }}">查看全部</a></p>
+  </header>
+  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  {{ with $posts }}
+  <div class="card-list">
+    {{ range first 5 . }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-hint">暂无文章。</p>
+  {{ end }}
+</section>
+{{ end }}

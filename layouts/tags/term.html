@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="page-section term-page" aria-labelledby="tag-term-heading">
+  <header class="section-header">
+    <p class="section-kicker">标签</p>
+    <h1 id="tag-term-heading" class="section-title">{{ .Title }}</h1>
+  </header>
+
+  {{ with .Pages.ByDate.Reverse }}
+  <div class="card-list">
+    {{ range . }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-hint">该标签下暂无文章。</p>
+  {{ end }}
+</section>
+{{ end }}

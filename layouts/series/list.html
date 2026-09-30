@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="page-section" aria-labelledby="series-list-heading">
+  <header class="section-header">
+    <h1 id="series-list-heading" class="section-title">系列</h1>
+    <p class="section-lead">按主题阅读的学习路径</p>
+  </header>
+
+  {{ with .Site.Taxonomies.series }}
+  <div class="card-list">
+    {{ range .Alphabetical }}
+      {{ partial "series-card.html" .Page }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-hint">暂无系列。</p>
+  {{ end }}
+</section>
+{{ end }}
